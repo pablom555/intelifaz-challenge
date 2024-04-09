@@ -1,4 +1,9 @@
-function UserForm({ onAddUser }) {
+import { useUserDispatch } from "./userContext/UserContext";
+import { addUser } from "./userContext/actions";
+
+function UserForm() {
+
+  const userDispatch = useUserDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -7,7 +12,7 @@ function UserForm({ onAddUser }) {
     const name = formData.get('name').trim();
     if (!name) return;
     
-    onAddUser({ id: Date.now(), name });
+    addUser(userDispatch)({ id: Date.now(), name });
     e.target.reset();
   };
 
